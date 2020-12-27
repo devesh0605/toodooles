@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { Button, StyleSheet, Text, View, TextInput } from 'react-native';
+import {ScrollView, Button, StyleSheet, Text, View, TextInput } from 'react-native';
 
 export default function App() {
   const [name,setName]=useState('Tom Riddle')
@@ -10,8 +10,18 @@ export default function App() {
     setName('Voldemort')
     setPerson({name:'Harry',age:'11'})
   }
+  const [people,setPeople]=useState([
+    {pname: 'chandler',key:'1'},
+    {pname: 'monica',key:'2'},
+    {pname: 'ross',key:'3'},
+    {pname: 'raechal',key:'4'},
+    {pname:  'joey',key:'5'},
+    {pname: 'pheobe',key:'6'},
+  ])
   return (
+    <ScrollView>
     <View style={styles.container}>
+      
       <View style={styles.header}>
         <Text style={styles.boldText}>
           Hello World
@@ -42,9 +52,17 @@ export default function App() {
       placeholder='eg. 10'
       onChangeText={(val)=>setage(val)}/>
       <Text>Name:{name}, age={age}</Text>
-      
+
+      {people.map(item=>(
+          <View key={item.key}>
+            <Text style={styles.item}>{item.pname}</Text>
+          </View>
+        )
+       )}
       <StatusBar style="auto" />
+      
     </View>
+    </ScrollView>
   );
 }
 
@@ -75,5 +93,13 @@ const styles = StyleSheet.create({
     padding: 8,
     margin: 10,
     width:200,
+  },
+  item : {
+    marginTop : 24,
+    padding:30,
+    backgroundColor:'green',
+    fontSize:30,
+    
+
   }
 });
