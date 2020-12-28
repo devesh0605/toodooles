@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   },
   list: {
     marginTop:20,
-    backgroundColor:'yellow',
+    backgroundColor:'#F0E68C',
     flex:1
   },
   
