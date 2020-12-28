@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import {StyleSheet, Text, View, FlatList } from 'react-native';
+import {StyleSheet, Text, View, FlatList, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import AddTodo from './components/addTodo';
 import Header from './components/header';
 import TodoItem from './components/todoitem';
@@ -20,16 +20,29 @@ export default function App() {
   }
 
   const submitHandler = (text)=>{
-    setTodos((prevTodos)=>{
-      return [
-        {text:text,key:Math.random().toString()},
-        ...prevTodos
-      ]
-    })
+
+    if (text.length > 3){
+      setTodos((prevTodos)=>{
+        return [
+          {text:text,key:Math.random().toString()},
+          ...prevTodos
+        ]
+      })
+
+    }else{
+      Alert.alert('WHOOPS!','Set bigger goals please!',[
+        {text:'Understood',onPress:()=>console.log('alert closed')}
+      ])
+    }
+    
   }
  
 
   return (
+    <TouchableWithoutFeedback onPress={()=>{
+      Keyboard.dismiss()
+      console.log('dismissed keyboard')
+    }}>
     <View style={styles.container}>
       <Header/>
 
@@ -53,13 +66,14 @@ export default function App() {
       <StatusBar style="auto" />
       
     </View>
+    </TouchableWithoutFeedback>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#90EE90',
     
   },
   content : {

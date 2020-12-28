@@ -17,7 +17,7 @@ export default function AddTodo({submitHandler}) {
             <Button
             onPress={()=>submitHandler(text)} 
             title='add todo' 
-            color='coral'
+            color='#006400'
             />
         </View>
     )

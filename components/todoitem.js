@@ -16,7 +16,10 @@ const styles = StyleSheet.create({
         borderColor:'#bbb',
         borderWidth:1,
         borderStyle:'dashed',
-        borderRadius:10
+        borderRadius:10,
+        fontSize: 15,
+        fontWeight:'bold'
+        
 
     }
 })
